@@ -28,11 +28,11 @@ lint:
 	env/bin/pylama
 
 postgres:
-	docker stop analyzer-postgres || true
-	docker run --rm --detach --name=analyzer-postgres \
+	docker stop candy_delivery-postgres || true
+	docker run --rm --detach --name=candy_delivery-postgres \
 		--env POSTGRES_USER=user \
 		--env POSTGRES_PASSWORD=hackme \
-		--env POSTGRES_DB=analyzer \
+		--env POSTGRES_DB=candy_delivery \
 		--publish 5432:5432 postgres
 
 test: lint postgres
