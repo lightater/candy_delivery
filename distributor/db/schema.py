@@ -33,8 +33,6 @@ class TransportType(Enum):
 couriers_table = Table(
     'couriers',
     metadata,
-    Column('import_id', Integer, ForeignKey('imports.import_id'),
-           primary_key=True),
     Column('courier_id', Integer, primary_key=True),
     Column('courier_type', PgEnum(TransportType, name='type'), nullable=False),
     Column('regions', ARRAY(Integer), nullable=False),
