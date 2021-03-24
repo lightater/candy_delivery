@@ -1,0 +1,4 @@
+.idea/
+venv/
+distributor.egg-info/
+dist/
