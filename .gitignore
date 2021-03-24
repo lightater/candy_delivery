@@ -1,4 +1,6 @@
 .idea/
 venv/
-distributor.egg-info/
 dist/
+distributor.egg-info/
+distributor/__pycache__/
+distributor/api/__pycache__/
