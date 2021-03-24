@@ -30,8 +30,8 @@ lint:
 postgres:
 	docker stop distributor-postgres || true
 	docker run --rm --detach --name=distributor-postgres \
-		--env POSTGRES_USER=user \
-		--env POSTGRES_PASSWORD=hackme \
+		--env POSTGRES_USER=tmp_user \
+		--env POSTGRES_PASSWORD=tmp_password \
 		--env POSTGRES_DB=distributor \
 		--publish 5432:5432 postgres
 
