@@ -28,15 +28,15 @@ lint:
 	env/bin/pylama
 
 postgres:
-	docker stop candy_delivery-postgres || true
-	docker run --rm --detach --name=candy_delivery-postgres \
+	docker stop distributor-postgres || true
+	docker run --rm --detach --name=distributor-postgres \
 		--env POSTGRES_USER=user \
 		--env POSTGRES_PASSWORD=hackme \
-		--env POSTGRES_DB=candy_delivery \
+		--env POSTGRES_DB=distributor \
 		--publish 5432:5432 postgres
 
 test: lint postgres
-	env/bin/pytest -vv --cov=candy_delivery --cov-report=term-missing tests
+	env/bin/pytest -vv --cov=distributor --cov-report=term-missing tests
 
 sdist: clean
 	# официальный способ дистрибуции python-модулей

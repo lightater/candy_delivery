@@ -26,7 +26,7 @@ COPY --from=builder /usr/share/python3/app /usr/share/python3/app
 
 # Устанавливаем ссылки, чтобы можно было воспользоваться командами
 # приложения
-RUN ln -snf /usr/share/python3/app/bin/candy_delivery-* /usr/local/bin/
+RUN ln -snf /usr/share/python3/app/bin/distributor-* /usr/local/bin/
 
 # Устанавливаем выполняемую при запуске контейнера команду по умолчанию
-CMD ["candy_delivery-api"]
+CMD ["distributor-api"]
