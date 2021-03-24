@@ -1,8 +1,5 @@
 .idea/
 venv/
 dist/
-distributor.egg-info/
-distributor/__pycache__/
-distributor/api/__pycache__/
-distributor/db/alembic/__pycache__/
-distributor/db/__pycache__/
+*.egg-info/
+__pycache__/
