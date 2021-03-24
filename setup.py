@@ -45,7 +45,7 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython'
     ],
-    python_requires='>=3.9',
+    python_requires='>=3.8',
     packages=find_packages(exclude=['tests']),
     install_requires=load_requirements('requirements.txt'),
     extras_require={'dev': load_requirements('requirements.dev.txt')},
@@ -58,7 +58,8 @@ setup(
             # ранних версий python, не стоит лишать пользователей этой
             # возможности.
             '{0}-api = {0}.api.__main__:main'.format(module_name),
-            '{0}-db = {0}.db.__main__:main'.format(module_name)
+            '{0}-db = {0}.db.__main__:main'.format(module_name),
+            'tuturu = zzuzu',
         ]
     },
     include_package_data=True
