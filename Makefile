@@ -36,7 +36,7 @@ postgres:
 		--publish 5432:5432 postgres
 
 test: lint postgres
-	env/bin/pytest -vv --cov=analyzer --cov-report=term-missing tests
+	env/bin/pytest -vv --cov=candy_delivery --cov-report=term-missing tests
 
 sdist: clean
 	# официальный способ дистрибуции python-модулей
