@@ -57,7 +57,7 @@ def generate_courier(
     if working_hours is None:
         w_hours = set()
         for i in range(randint(0, 5)):
-            start, end = fake.datetime(), fake.datetime()
+            start, end = fake.date_time(), fake.date_time()
             if start > end:
                 start, end = end, start
             w_hours.add(start.strftime('%H:%M') + '-' + end.strftime('%H:%M'))
