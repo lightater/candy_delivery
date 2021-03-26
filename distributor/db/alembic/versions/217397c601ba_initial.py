@@ -18,7 +18,7 @@ branch_labels = None
 depends_on = None
 
 
-TransportType = Enum('female', 'male', name='type')
+TransportType = Enum('foot', 'bike', 'car', name='courier_type')
 
 
 def upgrade():
