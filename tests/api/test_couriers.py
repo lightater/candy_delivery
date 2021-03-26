@@ -16,18 +16,18 @@ datasets = [
         generate_courier(courier_id=1),
         generate_courier(courier_id=2),
         generate_courier(courier_id=4),
-        generate_courier(courier_id=17)
+        generate_courier(courier_id=7)
     ],
 
     # Пустой курьер
     [
-        generate_courier()
+        generate_courier(courier_id=10)
     ],
 
     # Выгрузка с жителем, который сам себе родственник.
     # Обработчик должен возвращать идентификатор жителя в списке родственников.
     [
-        generate_courier(courier_id=10, regions=[1, 17],
+        generate_courier(courier_id=17, regions=[1, 17],
                          working_hours=['13:45-14:00', '22:50-00:10'])
     ],
 
