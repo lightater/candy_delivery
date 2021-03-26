@@ -76,7 +76,7 @@ CASES = (
 )
 
 
-@pytest.mark.parametrize('citizens,expected_status', CASES)
+@pytest.mark.parametrize('couriers,expected_status', CASES)
 async def test_import(api_client, couriers, expected_status):
     courier_ids = await post_couriers(api_client, couriers, expected_status)
 
