@@ -29,18 +29,16 @@ def create_app(args: Namespace) -> Application:
     """
     Создает экземпляр приложения, готового к запуску.
     """
-    print("One")
     app = Application(
         client_max_size=MAX_REQUEST_SIZE,
         middlewares=[error_middleware, validation_middleware]
     )
-    print("Two")
     # Подключение на старте к postgres и отключение при остановке
     app.cleanup_ctx.append(partial(setup_pg, args=args))
-    print("Three")
     # Регистрация обработчиков
     for handler in HANDLERS:
-        print("Hello !")
+        print(handler)
+        print(handler.URL_PATH)
         log.debug('Registering handler %r as %r', handler, handler.URL_PATH)
         app.router.add_route('*', handler.URL_PATH, handler)
 
