@@ -68,8 +68,8 @@ CASES = (
     # courier_id не уникален в рамках выгрузки
     (
         [
-            generate_courier(citizen_id=1),
-            generate_courier(citizen_id=1),
+            generate_courier(courier_id=1),
+            generate_courier(courier_id=1),
         ],
         HTTPStatus.BAD_REQUEST
     ),
