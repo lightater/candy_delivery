@@ -38,9 +38,8 @@ datasets = [
 
 
 def post_couriers(connection, couriers) -> list:
-    courier_rows, courier_ids = [], []
+    courier_rows = []
     for courier in couriers:
-        courier_ids.append({'id': courier['courier_id']})
         courier_rows.append({
             'courier_id': courier['courier_id'],
             'courier_type': courier['courier_type'],
@@ -48,9 +47,11 @@ def post_couriers(connection, couriers) -> list:
             'working_hours': courier['working_hours'],
         })
 
+    courier_ids = []
     if courier_rows:
-        query = couriers_table.insert().values(courier_rows)
-        connection.execute(query)
+        query = couriers_table.insert().values(courier_rows).returning(
+            couriers_table.c.courier_id)
+        courier_ids = connection.execute(query)
 
     return courier_ids
 
