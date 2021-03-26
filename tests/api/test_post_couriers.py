@@ -16,7 +16,7 @@ CASES = (
     # Обработчик должен корректно создавать выгрузку с одним жителем.
     (
         [
-            get_courier()
+            generate_courier()
         ],
         HTTPStatus.CREATED
     ),
@@ -26,9 +26,9 @@ CASES = (
     # родственные связи.
     (
         [
-            generate_courier(citizen_id=1),
-            generate_courier(citizen_id=2),
-            generate_courier(citizen_id=3)
+            generate_courier(courier_id=1),
+            generate_courier(courier_id=2),
+            generate_courier(courier_id=3)
         ],
         HTTPStatus.CREATED
     ),
@@ -38,7 +38,7 @@ CASES = (
     (
         [
             generate_courier(
-                citizen_id=1, courier_type='bike',
+                courier_id=1, courier_type='bike',
                 regions=[3, 1, 17], working_hours=['13:45-14:00',
                                                    '16:23-20:00']
             ),
