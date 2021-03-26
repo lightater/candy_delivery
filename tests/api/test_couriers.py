@@ -27,7 +27,7 @@ datasets = [
     # Выгрузка с жителем, который сам себе родственник.
     # Обработчик должен возвращать идентификатор жителя в списке родственников.
     [
-        generate_courier(courier_id=10, courier_type='bike', regions=[1, 17],
+        generate_courier(courier_id=10, regions=[1, 17],
                          working_hours=['13:45-14:00', '22:50-00:10'])
     ],
 
