@@ -21,7 +21,7 @@ devenv: clean
 	rm -rf env
 	# создаем новое окружение и устанавливаем основные + dev зависимости
 	# из extras_require (см. setup.py)
-	python3.9 -m venv env
+	python3.8 -m venv env
 	env/bin/pip install -Ue '.[dev]'
 
 lint:

@@ -4,7 +4,7 @@
 FROM snakepacker/python:all as builder
 
 # Создаем виртуальное окружение и обновляем pip
-RUN python3.9 -m venv /usr/share/python3/app
+RUN python3.8 -m venv /usr/share/python3/app
 RUN /usr/share/python3/app/bin/pip install -U pip
 
 # Устанавливаем зависимости отдельно чтобы закешировать, при последующей сборке
@@ -19,7 +19,7 @@ RUN /usr/share/python3/app/bin/pip install /mnt/dist/* \
 
 ########################### Финальный образ ############################
 # За основу берем "легкий" (~100M, в сжатом виде ~50M) образ с python
-FROM snakepacker/python:3.9 as api
+FROM snakepacker/python:3.8 as api
 
 # Копируем в него готовое виртуальное окружение из контейнера builder
 COPY --from=builder /usr/share/python3/app /usr/share/python3/app
