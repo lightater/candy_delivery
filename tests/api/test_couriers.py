@@ -67,7 +67,7 @@ async def test_get_citizens(api_client, migrated_postgres_connection, dataset):
     courier_ids = post_couriers(migrated_postgres_connection, dataset)
     actual_couriers = []
     for courier_id in courier_ids:
-        actual_courier = await get_courier(api_client, courier_id)
+        actual_courier = await get_courier(api_client, courier_id['id'])
         actual_couriers.append(actual_courier)
     assert compare_courier_groups(actual_couriers, dataset)
 
