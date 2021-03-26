@@ -165,8 +165,9 @@ class GetCourierView(BaseCourierView):
     @docs(summary='Отобразить указанного курьера')
     @response_schema(CourierResponseSchema())
     async def get(self):
+        print("There is GerCourierView")
         await self.check_courier_exists()
-
+        print("There is GerCourierView2")
         query = COURIERS_QUERY.where(
             couriers_table.c.import_id == self.courier_id
         )
