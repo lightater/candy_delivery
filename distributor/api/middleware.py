@@ -51,6 +51,7 @@ async def error_middleware(request: Request, handler):
 
         # Текстовые исключения (или исключения без информации) форматируем
         # в JSON
+        print(err.body)
         if not isinstance(err.body, JsonPayload):
             err = format_http_error(err.__class__, err.text)
 
