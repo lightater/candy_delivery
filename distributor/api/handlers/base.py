@@ -20,6 +20,7 @@ class BaseCourierView(BaseView):
         return int(self.request.match_info.get('courier_id'))
 
     async def check_courier_exists(self):
+        print("HERE")
         query = select([
             exists().where(couriers_table.c.courier_id == self.courier_id)
         ])
