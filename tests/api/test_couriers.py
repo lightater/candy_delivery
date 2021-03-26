@@ -37,7 +37,7 @@ datasets = [
 ]
 
 
-def post_couriers(connection, couriers) -> list(dict):
+def post_couriers(connection, couriers) -> list:
     courier_rows, courier_ids = [], []
     for courier in couriers:
         courier_ids.append({'id': courier['courier_id']})
