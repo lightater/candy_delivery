@@ -43,6 +43,7 @@ def handle_validation_error(error: ValidationError, *_):
 @middleware
 async def error_middleware(request: Request, handler):
     try:
+        print(request)
         return await handler(request)
     except HTTPException as err:
         # Исключения которые представляют из себя HTTP ответ, были брошены

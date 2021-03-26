@@ -68,7 +68,7 @@ def main():
     # записи в stderr или файл - логи можно буфферизовать и обрабатывать в
     # отдельном потоке (aiomisc.basic_config настроит буфферизацию
     # автоматически).
-    basic_config(args.log_level, args.log_format, buffered=False)
+    basic_config(args.log_level, args.log_format, buffered=True)
 
     # Аллоцируем сокет из под привиллегированного пользователя отдельным шагом,
     # чтобы была возможность перед запуском приложения сменить пользователя ОС.
