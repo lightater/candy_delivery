@@ -73,7 +73,7 @@ class PostCouriersView(BaseCourierView):
             for courier in couriers:
                 courier_ids.append({'id': courier['courier_id']})
 
-        return Response(body={'data': {'couriers': courier_ids}},
+        return Response(body={'couriers': courier_ids},
                         status=HTTPStatus.CREATED)
 
 
