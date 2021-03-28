@@ -45,13 +45,12 @@ class CourierSchema(PatchCourierSchema):
     regions = List(Int(validate=Range(min=0), strict=True), required=True)
     working_hours = List(Str(validate=Length(min=1, max=256)), required=True)
     rating = Float(validate=Range(min=0), required=False)
-    earnings = Int(validate=Range(min=0), required=True)
+    earnings = Int(validate=Range(min=0), required=False)
 
 
 class PostCouriersSchema(Schema):
-    #data = Nested(CourierSchema, many=True, required=True,
-    #              validate=Length(max=10000))
-    data = List(Int, required=True)
+    data = Nested(CourierSchema, many=True, required=True,
+                  validate=Length(max=10000))
 
     @validates_schema
     def validate_unique_courier_id(self, data, **_):
