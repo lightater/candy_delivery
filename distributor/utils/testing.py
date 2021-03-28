@@ -9,7 +9,7 @@ from aiohttp.typedefs import StrOrURL
 from aiohttp.web_urldispatcher import DynamicResource
 
 from distributor.api.handlers import (
-    PatchCourierView, PostCouriersView, GetCourierView
+    CourierView, PostCouriersView
 )
 from distributor.api.schema import (
     CourierResponseSchema, PostCouriersResponseSchema,
