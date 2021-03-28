@@ -49,13 +49,13 @@ class CourierSchema(PatchCourierSchema):
 
 
 class PostCouriersSchema(Schema):
-    couriers = Nested(CourierSchema, many=True, required=True,
+    data = Nested(CourierSchema, many=True, required=True,
                       validate=Length(max=10000))
 
     @validates_schema
     def validate_unique_courier_id(self, data, **_):
         courier_ids = set()
-        for courier in data['couriers']:
+        for courier in data['data']:
             if courier['courier_id'] in courier_ids:
                 raise ValidationError(
                     f'courier_id {courier["courier_id"]} is not unique'
