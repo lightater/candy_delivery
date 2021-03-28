@@ -16,11 +16,11 @@ from distributor.db.schema import assigned_orders_table, couriers_table, \
 from distributor.utils.helpers_func import calc_courier_carrying, overlap
 from distributor.utils.pg import MAX_QUERY_ARGS, SelectQuery
 
-from .base import BaseCourierView
+from .base import BaseCourierView, BaseView
 from .query import COURIERS_QUERY
 
 
-class PostCouriersView(BaseCourierView):
+class PostCouriersView(BaseView):
     URL_PATH = '/couriers'
     # Так как данных может быть много, а postgres поддерживает только
     # MAX_QUERY_ARGS аргументов в одном запросе, писать в БД необходимо
@@ -41,7 +41,7 @@ class PostCouriersView(BaseCourierView):
                 'courier_type': courier['courier_type'],
                 'regions': courier['regions'],
                 'working_hours': courier['working_hours'],
-               # 'earnings': 0
+                # 'earnings': 0
             }
 
     @docs(summary='Добавить выгрузку с информацией о курьерах')
@@ -79,7 +79,7 @@ class PostCouriersView(BaseCourierView):
                         status=HTTPStatus.CREATED)
 
 
-class PatchCourierView(BaseCourierView):
+class CourierView(BaseCourierView):
     URL_PATH = r'/couriers/{courier_id:\d+}'
 
     @property
@@ -159,10 +159,6 @@ class PatchCourierView(BaseCourierView):
             # Получаю актуальную информацию о курьере
             courier = await self.get_courier(conn, self.courier_id)
         return Response(body={'data': courier})
-
-
-class GetCourierView(BaseCourierView):
-    URL_PATH = r'/couriers/{courier_id:\d+}'
 
     @docs(summary='Отобразить указанного курьера')
     @response_schema(CourierResponseSchema())

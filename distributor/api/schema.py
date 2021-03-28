@@ -68,7 +68,7 @@ class PostCouriersIdSchema(Schema):
 
 
 class PostCouriersResponseSchema(Schema):
-    couriers28 = Nested(PostCouriersIdSchema(many=True), required=True)
+    couriers = Nested(PostCouriersIdSchema(many=True), required=True)
 
 
 class PatchCourierResponseSchema(Schema):

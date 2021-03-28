@@ -1,6 +1,6 @@
-from .courier import PatchCourierView, PostCouriersView, GetCourierView
+from .courier import CourierView, PostCouriersView
 
 
 HANDLERS = (
-    PatchCourierView, PostCouriersView, GetCourierView
+    CourierView, PostCouriersView
 )
