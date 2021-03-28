@@ -173,7 +173,8 @@ class CourierView(BaseCourierView):
             await self.acquire_lock(conn, self.courier_id)
             print("Hello")
             courier = await self.get_courier(conn, self.courier_id)
+            print("Bum ", courier)
             if not courier:
                 raise HTTPNotFound()
-
+            print("Turum")
             return Response(body=courier)
