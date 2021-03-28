@@ -10,10 +10,8 @@ from distributor.utils.testing import (
 )
 
 
-LONGEST_STR = 'ё' * 256
 CASES = (
-    # Житель без родственников.
-    # Обработчик должен корректно создавать выгрузку с одним жителем.
+    # Один курьер
     (
         [
             generate_courier()
@@ -21,27 +19,12 @@ CASES = (
         HTTPStatus.CREATED
     ),
 
-    # Житель с несколькими родственниками.
-    # Обработчик должен корректно добавлять жителей и создавать
-    # родственные связи.
+    # Несколько курьеров
     (
         [
             generate_courier(courier_id=1),
             generate_courier(courier_id=2),
             generate_courier(courier_id=3)
-        ],
-        HTTPStatus.CREATED
-    ),
-
-    # Житель сам себе родственник.
-    # Обработчик должен позволять создавать такие родственные связи.
-    (
-        [
-            generate_courier(
-                courier_id=1, courier_type='bike',
-                regions=[3, 1, 17], working_hours=['13:45-14:00',
-                                                   '16:23-20:00']
-            ),
         ],
         HTTPStatus.CREATED
     ),
@@ -79,6 +62,9 @@ CASES = (
 @pytest.mark.parametrize('couriers,expected_status', CASES)
 async def test_import(api_client, couriers, expected_status):
     courier_ids = await post_couriers(api_client, couriers, expected_status)
+
+    if len(courier_ids) < 10:
+        print(courier_ids)
 
     # Проверяем, что данные успешно импортированы
     if expected_status == HTTPStatus.CREATED:

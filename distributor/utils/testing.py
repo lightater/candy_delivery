@@ -128,7 +128,7 @@ async def post_couriers(
         couriers: List[Mapping[str, Any]],
         expected_status: Union[int, EnumMeta] = HTTPStatus.CREATED,
         **request_kwargs
-) -> Optional[int]:
+) -> dict:
     response = await client.post(
         PostCouriersView.URL_PATH, json={'data': couriers},
         **request_kwargs
