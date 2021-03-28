@@ -12,6 +12,7 @@ from distributor.api.handlers import (
     CourierView, PostCouriersView
 )
 from distributor.api.schema import (
+    CourierSchema,
     CourierResponseSchema, PostCouriersResponseSchema,
     PatchCourierResponseSchema
 )
