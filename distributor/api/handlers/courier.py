@@ -163,10 +163,11 @@ class CourierView(BaseCourierView):
     @response_schema(CourierSchema())
     async def get(self):
         await self.check_courier_exists()
+
         query = COURIERS_QUERY.where(
             couriers_table.c.courier_id == self.courier_id
         )
-        for itr in SelectQuery(query, self.pg.transaction()):
-            print(itr)
+        #for itr in SelectQuery(query, self.pg.transaction()):
+        #    print(itr)
         courier = SelectQuery(query, self.pg.transaction())
         return Response(body=courier)
