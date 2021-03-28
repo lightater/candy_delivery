@@ -94,10 +94,9 @@ class CourierView(BaseCourierView):
         #query = COURIERS_QUERY.where(couriers_table.c.courier_id == courier_id)
         query = couriers_table.select().where(couriers_table.c.courier_id == courier_id)
         result = dict(await conn.fetchrow(query))
-        print(result)
-        if result['earnings'] == 'null':
+        if not result['earnings']:
             result['earnings'] = 0
-        if result['rating'] == 'null':
+        if not result['rating']:
             result.pop('rating')
         return result
 
