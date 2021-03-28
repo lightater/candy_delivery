@@ -54,7 +54,8 @@ class PostCouriersView(BaseCourierView):
             # Генераторы make_citizens_table_rows и make_relations_table_rows
             # лениво генерируют данные, готовые для вставки в таблицы citizens
             # и relations на основе данных отправленных клиентом.
-            couriers = self.request['data']['data']
+            couriers = self.request['data']
+            print(couriers)
             courier_rows = self.make_couriers_table_rows(couriers)
 
             # Чтобы уложиться в ограничение кол-ва аргументов в запросе к
