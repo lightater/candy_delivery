@@ -45,7 +45,7 @@ class CourierSchema(PatchCourierSchema):
     regions = List(Int(validate=Range(min=0), strict=True), required=True)
     working_hours = List(Str(validate=Length(min=1, max=256)), required=True)
     rating = Float(validate=Range(min=0), required=False)
-    earnings = Int(validate=Range(min=0), required=True)
+    earnings = Int(validate=Range(min=0), required=False)
 
 
 class PostCouriersSchema(Schema):

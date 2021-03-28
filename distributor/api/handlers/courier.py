@@ -41,7 +41,7 @@ class PostCouriersView(BaseCourierView):
                 'courier_type': courier['courier_type'],
                 'regions': courier['regions'],
                 'working_hours': courier['working_hours'],
-                'earnings': 0
+               # 'earnings': 0
             }
 
     @docs(summary='Добавить выгрузку с информацией о курьерах')
