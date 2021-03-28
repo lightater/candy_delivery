@@ -93,7 +93,12 @@ class CourierView(BaseCourierView):
     async def get_courier(conn, courier_id):
         #query = COURIERS_QUERY.where(couriers_table.c.courier_id == courier_id)
         query = couriers_table.select().where(couriers_table.c.courier_id == courier_id)
-        return dict(await conn.fetchrow(query))
+        result = dict(await conn.fetchrow(query))
+        if result['earnings'] == 'null':
+            result['earnings'] = 0
+        if result['rating'] == 'null':
+            result.pop('rating')
+        return result
 
     @staticmethod
     async def get_assigned_orders(conn, courier_id):
