@@ -129,7 +129,7 @@ async def post_couriers(
         **request_kwargs
 ) -> Optional[int]:
     response = await client.post(
-        PostCouriersView.URL_PATH, json={'couriers': couriers},
+        PostCouriersView.URL_PATH, json={'data': couriers},
         **request_kwargs
     )
     assert response.status == expected_status
