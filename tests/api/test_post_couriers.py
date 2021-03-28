@@ -63,13 +63,10 @@ CASES = (
 async def test_import(api_client, couriers, expected_status):
     courier_ids = await post_couriers(api_client, couriers, expected_status)
 
-    if len(courier_ids) < 10:
-        print(courier_ids)
-
     # Проверяем, что данные успешно импортированы
     if expected_status == HTTPStatus.CREATED:
         imported_couriers = []
-        for courier_id in courier_ids:
+        for courier_id in courier_ids['couriers']:
             imported_courier = await get_courier(api_client, courier_id)
             imported_couriers.append(imported_courier)
         assert compare_courier_groups(couriers, imported_couriers)
