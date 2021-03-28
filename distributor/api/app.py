@@ -37,8 +37,6 @@ def create_app(args: Namespace) -> Application:
     app.cleanup_ctx.append(partial(setup_pg, args=args))
     # Регистрация обработчиков
     for handler in HANDLERS:
-        print(handler)
-        print(handler.URL_PATH)
         log.debug('Registering handler %r as %r', handler, handler.URL_PATH)
         app.router.add_route('*', handler.URL_PATH, handler)
 

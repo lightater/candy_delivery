@@ -69,7 +69,6 @@ class PostCouriersView(BaseView):
 
             query = couriers_table.insert()
             for chunk in chunked_courier_rows:
-                print(chunk)
                 await conn.execute(query.values(list(chunk)))
             courier_ids = []
             for courier in couriers:

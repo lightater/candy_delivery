@@ -138,7 +138,7 @@ async def post_couriers(
         data = await response.json()
         errors = PostCouriersResponseSchema().validate(data)
         assert errors == {}
-        return data['data']['couriers']
+        return data['couriers']
 
 
 async def get_courier(
