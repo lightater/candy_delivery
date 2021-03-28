@@ -7,7 +7,7 @@ from aiohttp_apispec import docs, request_schema, response_schema
 from aiomisc import chunk_list
 from sqlalchemy import and_, or_
 
-from distributor.api.schema import CourierResponseSchema, \
+from distributor.api.schema import CourierSchema, \
     PatchCourierResponseSchema, PatchCourierSchema, PostCouriersSchema, \
     PostCouriersResponseSchema
 
@@ -160,7 +160,7 @@ class CourierView(BaseCourierView):
         return Response(body={'data': courier})
 
     @docs(summary='Отобразить указанного курьера')
-    @response_schema(CourierResponseSchema())
+    @response_schema(CourierSchema())
     async def get(self):
         await self.check_courier_exists()
         query = COURIERS_QUERY.where(
