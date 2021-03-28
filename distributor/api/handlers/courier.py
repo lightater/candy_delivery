@@ -93,7 +93,7 @@ class CourierView(BaseCourierView):
     async def get_courier(conn, courier_id):
         #query = COURIERS_QUERY.where(couriers_table.c.courier_id == courier_id)
         query = couriers_table.select().where(couriers_table.c.courier_id == courier_id)
-        result = await conn.execute(query)
+        result = await conn.fetchrow(query)
         print(result)
         return result.fetchone()
 
