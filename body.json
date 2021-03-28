@@ -1,1 +1,1 @@
-{"people": [{"name": "Scott", "website": "stackabuse.com", "from": "Nebraska"}, {"name": "Larry", "website": "google.com", "from": "Michigan"}, {"name": "Tim", "website": "apple.com", "from": "Alabama"}]}
+{"data": [{"courier_id": 13, "courier_type": "stackabuse.com", "from": "Nebraska"}, {"name": "Larry", "website": "google.com", "from": "Michigan"}, {"name": "Tim", "website": "apple.com", "from": "Alabama"}]}
