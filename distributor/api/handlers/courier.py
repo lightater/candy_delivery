@@ -27,7 +27,7 @@ class PostCouriersView(BaseCourierView):
     # частями.
     # Максимальное кол-во строк для вставки можно рассчитать как отношение
     # MAX_QUERY_ARGS к кол-ву вставляемых в таблицу столбцов.
-    MAX_CITIZENS_PER_INSERT = MAX_QUERY_ARGS // len(couriers_table.columns)
+    MAX_COURIERS_PER_INSERT = MAX_QUERY_ARGS // len(couriers_table.columns)
 
     @classmethod
     def make_couriers_table_rows(cls, couriers) -> Generator:
