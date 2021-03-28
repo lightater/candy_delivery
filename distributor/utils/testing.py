@@ -13,7 +13,7 @@ from distributor.api.handlers import (
 )
 from distributor.api.schema import (
     CourierResponseSchema, PostCouriersResponseSchema,
-    PatchCourierResponseSchema, TIME_HOURS_FORMAT
+    PatchCourierResponseSchema
 )
 from distributor.utils.pg import MAX_INTEGER
 
@@ -149,7 +149,7 @@ async def get_courier(
 ) -> dict:
     print("Hello world!")
     response = await client.get(
-        url_for(GetCourierView.URL_PATH, courier_id=courier_id),
+        url_for(CourierView.URL_PATH, courier_id=courier_id),
         **request_kwargs
     )
     print("Yoyoyo")
@@ -167,7 +167,7 @@ async def patch_courier(
         courier_id: int,
         data: Mapping[str, Any],
         expected_status: Union[int, EnumMeta] = HTTPStatus.OK,
-        str_or_url: StrOrURL = PatchCourierView.URL_PATH,
+        str_or_url: StrOrURL = CourierView.URL_PATH,
         **request_kwargs
 ):
     response = await client.patch(
