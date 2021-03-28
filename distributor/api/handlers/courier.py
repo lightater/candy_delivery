@@ -92,7 +92,8 @@ class CourierView(BaseCourierView):
     @staticmethod
     async def get_courier(conn, courier_id):
         query = COURIERS_QUERY.where(couriers_table.c.courier_id == courier_id)
-        return await conn.fetchall(query)
+        cursor = conn.cursor(query)
+        return await cursor.fetchrow()
 
     @staticmethod
     async def get_assigned_orders(conn, courier_id):
@@ -169,12 +170,8 @@ class CourierView(BaseCourierView):
         #    print(itr)
         #courier = SelectQuery(query, self.pg.transaction())
         async with self.pg.transaction() as conn:
-            print("Hi")
             await self.acquire_lock(conn, self.courier_id)
-            print("Hello")
             courier = await self.get_courier(conn, self.courier_id)
-            print("Bum ", courier)
             if not courier:
                 raise HTTPNotFound()
-            print("Turum")
             return Response(body=courier)
