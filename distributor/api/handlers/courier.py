@@ -36,6 +36,7 @@ class PostCouriersView(BaseCourierView):
         import_id и без ключа relatives).
         """
         for courier in couriers:
+            print(courier)
             yield {
                 'courier_id': courier['courier_id'],
                 'courier_type': courier['courier_type'],
