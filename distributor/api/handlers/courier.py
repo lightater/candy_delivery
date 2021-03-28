@@ -57,7 +57,7 @@ class PostCouriersView(BaseCourierView):
             # и relations на основе данных отправленных клиентом.
             couriers = self.request['data']['data']
             print(couriers)
-            courier_rows = self.make_couriers_table_rows(couriers)
+            #courier_rows = self.make_couriers_table_rows(couriers)
 
             # Чтобы уложиться в ограничение кол-ва аргументов в запросе к
             # postgres, а также сэкономить память и избежать создания полной
@@ -65,7 +65,7 @@ class PostCouriersView(BaseCourierView):
             # генератор chunk_list.
             # Он будет получать из генератора make_citizens_table_rows только
             # необходимый для 1 запроса объем данных.
-            chunked_courier_rows = chunk_list(courier_rows,
+            chunked_courier_rows = chunk_list(couriers,
                                               self.MAX_COURIERS_PER_INSERT)
 
             query = couriers_table.insert()
