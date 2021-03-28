@@ -93,7 +93,7 @@ class CourierView(BaseCourierView):
     async def get_courier(conn, courier_id):
         #query = COURIERS_QUERY.where(couriers_table.c.courier_id == courier_id)
         query = couriers_table.select().where(couriers_table.c.courier_id == courier_id)
-        return await conn.fetchrow(query)
+        return dict(await conn.fetchrow(query))
 
     @staticmethod
     async def get_assigned_orders(conn, courier_id):
@@ -174,4 +174,4 @@ class CourierView(BaseCourierView):
             courier = await self.get_courier(conn, self.courier_id)
             if not courier:
                 raise HTTPNotFound()
-            return Response(body={*courier})
+            return Response(body=courier)
