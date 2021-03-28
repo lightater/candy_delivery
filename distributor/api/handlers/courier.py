@@ -162,12 +162,11 @@ class CourierView(BaseCourierView):
     @docs(summary='Отобразить указанного курьера')
     @response_schema(CourierSchema())
     async def get(self):
-        async with self.pg.transaction() as conn:
-            await self.acquire_lock(conn, self.courier_id)
-
-            # Получаю информацию о курьере
-            courier = await self.get_courier(conn, self.courier_id)
-            if not courier:
-                raise HTTPNotFound()
-        print(courier)
+        await self.check_courier_exists()
+        query = COURIERS_QUERY.where(
+            couriers_table.c.courier_id == self.courier_id
+        )
+        for itr in SelectQuery(query, self.pg.transaction()):
+            print(itr)
+        courier = SelectQuery(query, self.pg.transaction())
         return Response(body=courier)
