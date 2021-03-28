@@ -92,8 +92,9 @@ class CourierView(BaseCourierView):
     @staticmethod
     async def get_courier(conn, courier_id):
         query = COURIERS_QUERY.where(couriers_table.c.courier_id == courier_id)
-        cursor = conn.cursor(query)
-        return await cursor.fetchrow()
+        result = await conn.execute(query)
+        print(result)
+        return result.fetchone
 
     @staticmethod
     async def get_assigned_orders(conn, courier_id):
