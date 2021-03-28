@@ -50,13 +50,13 @@ def generate_courier(
 
     if regions is None:
         reg = set()
-        for i in range(randint(0, 5)):
+        for i in range(randint(1, 5)):
             reg.add(randint(0, 20))
         regions = list(reg)
 
     if working_hours is None:
         w_hours = set()
-        for i in range(randint(0, 5)):
+        for i in range(randint(1, 5)):
             start, end = fake.date_time(), fake.date_time()
             if start > end:
                 start, end = end, start

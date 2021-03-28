@@ -72,7 +72,7 @@ class PostCouriersView(BaseView):
                 await conn.execute(query.values(list(chunk)))
             courier_ids = []
             for courier in couriers:
-                courier_ids.append({'id': courier['courier_id']})
+                courier_ids.append({'courier_id': courier['courier_id']})
 
         return Response(body={'couriers': courier_ids},
                         status=HTTPStatus.CREATED)
