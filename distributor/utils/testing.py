@@ -147,17 +147,15 @@ async def get_courier(
         expected_status: Union[int, EnumMeta] = HTTPStatus.OK,
         **request_kwargs
 ) -> dict:
-    print("Hello world!")
     response = await client.get(
         url_for(CourierView.URL_PATH, courier_id=courier_id),
         **request_kwargs
     )
-    print("Yoyoyo")
     assert response.status == expected_status
 
     if response.status == HTTPStatus.OK:
         data = await response.json()
-        errors = CourierResponseSchema().validate(data)
+        errors = CourierSchema().validate(data)
         assert errors == {}
         return data['data']
 
