@@ -91,9 +91,11 @@ class CourierView(BaseCourierView):
 
     @staticmethod
     async def get_courier(conn, courier_id):
-        #query = COURIERS_QUERY.where(couriers_table.c.courier_id == courier_id)
-        query = couriers_table.select().where(couriers_table.c.courier_id == courier_id)
-        result = dict(await conn.fetchrow(query))
+        query = COURIERS_QUERY.where(couriers_table.c.courier_id == courier_id)
+        courier = await conn.fetchrow(query)
+        if not courier:
+            raise HTTPNotFound()
+        result = dict(courier)
         if not result['earnings']:
             #result['earnings'] = 0
             result.pop('earnings')
@@ -144,8 +146,6 @@ class CourierView(BaseCourierView):
 
             # Получаю информацию о курьере
             courier = await self.get_courier(conn, self.courier_id)
-            if not courier:
-                raise HTTPNotFound()
 
             # Обновляю assigned orders и orders
             orders = await self.get_assigned_orders(conn, self.courier_id)
@@ -178,6 +178,4 @@ class CourierView(BaseCourierView):
         async with self.pg.transaction() as conn:
             await self.acquire_lock(conn, self.courier_id)
             courier = await self.get_courier(conn, self.courier_id)
-            if not courier:
-                raise HTTPNotFound()
             return Response(body=courier)
