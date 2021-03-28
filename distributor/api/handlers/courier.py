@@ -166,6 +166,7 @@ class CourierView(BaseCourierView):
         query = COURIERS_QUERY.where(
             couriers_table.c.courier_id == self.courier_id
         )
-        courier = SelectQuery(query, self.pg.transaction())
+        #courier = SelectQuery(query, self.pg.transaction())
+        courier = couriers_table.select(couriers_table.c.courier_id == self.courier_id)
         print(courier)
         return Response(body=courier)
