@@ -32,16 +32,16 @@ class PostCouriersView(BaseCourierView):
     @classmethod
     def make_couriers_table_rows(cls, couriers) -> Generator:
         """
-        Генерирует данные готовые для вставки в таблицу citizens (с ключом
-        import_id и без ключа relatives).
+        Генерирует данные готовые для вставки в таблицу couriers (с ключом
+        earnings).
         """
         for courier in couriers:
-            print(courier)
             yield {
                 'courier_id': courier['courier_id'],
                 'courier_type': courier['courier_type'],
                 'regions': courier['regions'],
                 'working_hours': courier['working_hours'],
+                'earnings': 0
             }
 
     @docs(summary='Добавить выгрузку с информацией о курьерах')
@@ -56,8 +56,7 @@ class PostCouriersView(BaseCourierView):
             # лениво генерируют данные, готовые для вставки в таблицы citizens
             # и relations на основе данных отправленных клиентом.
             couriers = self.request['data']['data']
-            print(couriers)
-            #courier_rows = self.make_couriers_table_rows(couriers)
+            courier_rows = self.make_couriers_table_rows(couriers)
 
             # Чтобы уложиться в ограничение кол-ва аргументов в запросе к
             # postgres, а также сэкономить память и избежать создания полной
@@ -65,11 +64,12 @@ class PostCouriersView(BaseCourierView):
             # генератор chunk_list.
             # Он будет получать из генератора make_citizens_table_rows только
             # необходимый для 1 запроса объем данных.
-            chunked_courier_rows = chunk_list(couriers,
+            chunked_courier_rows = chunk_list(courier_rows,
                                               self.MAX_COURIERS_PER_INSERT)
 
             query = couriers_table.insert()
             for chunk in chunked_courier_rows:
+                print(chunk)
                 await conn.execute(query.values(list(chunk)))
             courier_ids = []
             for courier in couriers:
