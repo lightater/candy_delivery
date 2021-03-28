@@ -50,7 +50,7 @@ class CourierSchema(PatchCourierSchema):
 
 class PostCouriersSchema(Schema):
     data = Nested(CourierSchema, many=True, required=True,
-                      validate=Length(max=10000))
+                  validate=Length(max=10000))
 
     @validates_schema
     def validate_unique_courier_id(self, data, **_):
