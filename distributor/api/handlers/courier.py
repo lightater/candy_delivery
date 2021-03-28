@@ -174,4 +174,4 @@ class CourierView(BaseCourierView):
             courier = await self.get_courier(conn, self.courier_id)
             if not courier:
                 raise HTTPNotFound()
-            return Response(body=courier)
+            return Response(body={*courier})
