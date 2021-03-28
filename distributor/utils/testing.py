@@ -158,7 +158,7 @@ async def get_courier(
         data = await response.json()
         errors = CourierSchema().validate(data)
         assert errors == {}
-        return data['data']
+        return data
 
 
 async def patch_courier(
